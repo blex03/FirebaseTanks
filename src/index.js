@@ -24,5 +24,9 @@ const colRef = collection(db, "Players");
 //get collection data
 getDocs(colRef)
     .then((snapshot) => {
-        console.log(snapshot.docs)
+      let players = []
+      snapshot.docs.forEach((doc) => {
+        players.push({ ...doc.data(), id: doc.id })
+      })
+      console.log(players)
     });
