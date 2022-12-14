@@ -1,5 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { 
+  getFirestore, collection, getDocs, 
+  addDoc, deleteDoc, doc 
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAKCJjF2FRd00lhdSFmHCuvvQ0ZusaI8hk",
@@ -30,3 +33,33 @@ getDocs(colRef)
       })
       console.log(players)
     });
+
+const addPlayerForm = document.querySelector('.add')
+addPlayerForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  addDoc(colRef, {
+    Name: addPlayerForm.name.value,
+    Email: addPlayerForm.email.value,
+  })
+
+  .then(() => {
+    addPlayerForm.reset()
+  })
+
+
+})
+
+const deletePlayerForm = document.querySelector('.delete')
+deletePlayerForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  const docRef = doc(db, "Players", deletePlayerForm.id.value)
+
+  deleteDoc(docRef)
+
+  .then(() => {
+    deletePlayerForm.reset()
+  })
+
+})
