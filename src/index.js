@@ -4,6 +4,11 @@ import {
   addDoc, deleteDoc, doc 
 } from "firebase/firestore";
 
+import { 
+  getAuth, createUserWithEmailAndPassword, signOut,
+  signInWithEmailAndPassword
+} from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAKCJjF2FRd00lhdSFmHCuvvQ0ZusaI8hk",
   authDomain: "fir-tanks.firebaseapp.com",
@@ -20,6 +25,7 @@ initializeApp(firebaseConfig);
 
 //init services
 const db = getFirestore();
+const auth = getAuth();
 
 //collection ref
 const colRef = collection(db, "Players");
@@ -60,5 +66,54 @@ deletePlayerForm.addEventListener('submit', (e) => {
   .then(() => {
     deletePlayerForm.reset()
   })
+
+})
+
+const signUpForm = document.querySelector('.signup')
+signUpForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  const email = signUpForm.email.value
+  const password = signUpForm.password.value
+
+
+  createUserWithEmailAndPassword(auth, email, password)
+  .then((cred) => {
+    console.log('User Created:', cred.user)
+    signUpForm.reset()
+  })
+
+  .catch((err) => {
+    console.log(err.message)
+  })
+
+})
+
+//Log in and out
+const logOutButton = document.querySelector('.logout')
+logOutButton.addEventListener('click', () => {
+  signOut(auth)
+    .then(() => {
+      console.log('User Logged Out')
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
+
+})
+const logInForm = document.querySelector('.login')
+logInForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+
+  const email = logInForm.email.value
+  const password = logInForm.password.value
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((cred) => {
+      console.log('User Logged In:', cred.user)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    })
 
 })
