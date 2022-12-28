@@ -1,7 +1,9 @@
 import './App.css';
 import { useState } from 'react';
+import Title from './components/Title'
 
 function App() {
+  <Title />
   const [loggedIn, setLoggedIn] = useState(false)
 
   const signUp = () => {
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <Title />
       {!loggedIn && (
         <div>
           <button onClick={signUp}>Sign Up</button>
