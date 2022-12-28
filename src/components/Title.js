@@ -1,7 +1,7 @@
-export default function Title() {
+export default function Title(props) {
     return(
-        <div>
-            <h1 className='Title'>Firebase Tanks</h1>
-        </div>
+        <>
+            <h1 className='Title'>{props.title}</h1>
+        </>
     )
 }

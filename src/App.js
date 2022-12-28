@@ -24,18 +24,18 @@ function App() {
 
   return (
     <div className="App">
-      <Title />
+      <Title title="Firebase Tanks"/>
       {!loggedIn && (
-        <div>
+        <>
           <button onClick={signUp}>Sign Up</button>
           <button onClick={logIn}>Log In</button>
-        </div>
+        </>
       )}
 
       {loggedIn && (
-        <div>
+        <>
           <button onClick={logOut}>Log Out</button>
-        </div>
+        </>
       )}
 
     </div>
