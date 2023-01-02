@@ -45,14 +45,14 @@ function App() {
         </>
       )}
       
+      {modalOpen && <Modal closeModal={closeModal}>
+        <h1>About</h1>
+        <p>Firebase Tanks is a game that uses Firebase for realtime multiplayer</p>
+      </Modal>}
+
       <>
         <button onClick={()=>{setModalOpen(true)}}>About</button>
       </>
-
-      {modalOpen && <Modal closeModal={closeModal}>
-        <h2>About</h2>
-        <p>Firebase Tanks is a game that uses Firebase for realtime multiplayer</p>
-      </Modal>}
     </div>
   );
 }
