@@ -1,59 +1,31 @@
 import './App.css';
-import { useState } from 'react';
-import Title from './components/Title'
-import Modal from './components/Modal'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+//Page Components
+import Home from './pages/Home'
+import Signup from './pages/Signup'
+import Login from './pages/Login'
 
 function App() {
-  <Title />
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [modalOpen, setModalOpen] = useState(false)
-
-  const signUp = () => {
-    setLoggedIn(true)
-    console.log("Signed Up")
-  }
-
-  const logIn = () => {
-    setLoggedIn(true)
-    console.log("Logged In") 
-  }
-
-  const logOut = () => {
-    console.log("Logged Out")
-    setLoggedIn(false)
-  }
-
-  const closeModal = () => {
-    setModalOpen(false)
-  }
-
-
   return (
     <div className="App">
-      <Title title="Firebase Tanks"/>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path = "/">
+            <Home />
+          </Route>
 
-      {!loggedIn && (
-        <>
-          <button onClick={signUp}>Sign Up</button>
-          <button onClick={logIn}>Log In</button>
-        </>
-      )}
+          <Route path = "/Signup">
+            <Signup />
+          </Route>
 
-      {loggedIn && (
-        <>
-          <button onClick={logOut}>Log Out</button>
-        </>
-      )}
-      
-      {modalOpen && <Modal closeModal={closeModal}>
-        <h1>About</h1>
-        <p>Firebase Tanks is a game that uses Firebase for realtime multiplayer</p>
-      </Modal>}
-
-      <>
-        <button onClick={()=>{setModalOpen(true)}}>About</button>
-      </>
+          <Route path = "/Login">
+            <Login />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
+    
   );
 }
 
