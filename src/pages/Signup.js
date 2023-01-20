@@ -1,7 +1,10 @@
+import './Home.css'
+
 export default function signup() {
   return (
-    <div>
+    <>
         <h1>Sign Up</h1>
-    </div>
+        <a href='/' className='button'>Continue</a>
+    </>
   )
 }

@@ -1,10 +1,15 @@
+import './Home.css'
+
 import Title from '../components/Title'
 import Modal from '../components/Modal'
 
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 
 export default function Home() {
+    useLocation()
+
     const [loggedIn, setLoggedIn] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
 
@@ -32,14 +37,14 @@ export default function Home() {
         <Title title = 'Firebase Tanks' />
         {!loggedIn && (
           <>
-            <button onClick={signUp}>Sign Up</button>
-            <button onClick={logIn}>Log In</button>
+            <Link to='/Signup' onClick={signUp} className='button'>Sign Up</Link>
+            <Link to='/Login' onClick={logIn} className='button'>Log In</Link>
           </>
         )}
 
         {loggedIn && (
           <>
-            <button onClick={logOut}>Log Out</button>
+            <div onClick={logOut} className='button'>Log Out</div>
           </>
         )}
         
@@ -49,9 +54,8 @@ export default function Home() {
         </Modal>}
 
         <>
-          <button onClick={()=>{setModalOpen(true)}}>About</button>
+          <div onClick={()=>{setModalOpen(true)}} className='button'>About</div>
         </>
- 
 
     </div>
   )
