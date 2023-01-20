@@ -4,47 +4,29 @@ import Title from '../components/Title'
 import Modal from '../components/Modal'
 
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-export default function Home() {
-    useLocation()
+export default function Home(props) {
+  const [modalOpen, setModalOpen] = useState(false)
 
-    const [loggedIn, setLoggedIn] = useState(false)
-    const [modalOpen, setModalOpen] = useState(false)
+  const closeModal = () => {
+  setModalOpen(false)
+  }
 
-    const signUp = () => {
-    setLoggedIn(true)
-    console.log("Signed Up")
-    }
-
-    const logIn = () => {
-    setLoggedIn(true)
-    console.log("Logged In") 
-    }
-
-    const logOut = () => {
-    console.log("Logged Out")
-    setLoggedIn(false)
-    }
-
-    const closeModal = () => {
-    setModalOpen(false)
-    
-}
   return (
     <div>
         <Title title = 'Firebase Tanks' />
-        {!loggedIn && (
+        {!props.loggedIn && (
           <>
-            <Link to='/Signup' onClick={signUp} className='button'>Sign Up</Link>
-            <Link to='/Login' onClick={logIn} className='button'>Log In</Link>
+            <Link to='/Signup' onClick={props.signUp} className='button'>Sign Up</Link>
+            <Link to='/Login' onClick={props.logIn} className='button'>Log In</Link>
           </>
         )}
 
-        {loggedIn && (
+        {props.loggedIn && (
           <>
-            <div onClick={logOut} className='button'>Log Out</div>
+            <div onClick={props.logOut} className='button'>Log Out</div>
           </>
         )}
         

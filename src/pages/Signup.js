@@ -1,10 +1,11 @@
 import './Home.css'
+import { Link } from 'react-router-dom'
 
 export default function signup() {
   return (
     <>
         <h1>Sign Up</h1>
-        <a href='/' className='button'>Continue</a>
+        <Link to='/' className='button'>Continue</Link>
     </>
   )
 }
